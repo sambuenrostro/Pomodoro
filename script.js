@@ -90,12 +90,56 @@ document.addEventListener('DOMContentLoaded', () => {
 // HIGATHER button functionality
 const higatherBtn = document.getElementById('higather');
 const explosion = document.getElementById('explosion');
+const celebrationAudio = document.getElementById('celebrationAudio');
+
+// Confetti configuration
+const confettiDuration = 10000; // 10 seconds of confetti
+const confettiColors = ['#fd79a8', '#e84393', '#00b894', '#00cec9', '#0984e3', '#6c5ce7'];
+
+function fireConfetti() {
+    const end = Date.now() + confettiDuration;
+
+    // Create an interval that will fire confetti frequently
+    const interval = setInterval(function() {
+        if (Date.now() > end) {
+            return clearInterval(interval);
+        }
+
+        // Fire multiple confetti bursts
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.9 },
+            colors: confettiColors,
+            startVelocity: 45,
+            gravity: 0.8,
+            ticks: 300
+        });
+        confetti({
+            particleCount: 100,
+            spread: 130,
+            origin: { y: 1 },
+            colors: confettiColors,
+            startVelocity: 55,
+            gravity: 0.6,
+            ticks: 400
+        });
+    }, 250); // Fire every 250ms
+}
 
 higatherBtn.addEventListener('click', () => {
+    // Start the explosion animation
     explosion.classList.add('show');
+    
+    // Fire confetti
+    fireConfetti();
+    
+    // Play celebration music
+    celebrationAudio.currentTime = 0; // Reset audio to start
+    celebrationAudio.play();
     
     // Hide the explosion after animation
     setTimeout(() => {
         explosion.classList.remove('show');
-    }, 10000); // 10 seconds
+    }, 10000);
 }); 

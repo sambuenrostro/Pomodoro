@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -25,6 +26,9 @@
         <button id="higather" class="higather-btn">TAKE A BREAK</button>
         <div id="explosion" class="explosion"></div>
     </div>
+    <audio id="celebrationAudio" preload="auto">
+        <source src="./celebration.mp3" type="audio/mpeg">
+    </audio>
     <script src="script.js"></script>
 </body>
 </html> 
